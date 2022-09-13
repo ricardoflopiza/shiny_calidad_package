@@ -20,4 +20,4 @@ shinyApp(ui = app_ui, server = app_server)
 }
 
 # pkgload::load_all(".")
-# shiny_calidad()
+ shiny_calidad()
