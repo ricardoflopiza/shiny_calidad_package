@@ -35,7 +35,7 @@ RUN chmod 777 /root/.ssh/id_rsa.pub
 RUN R -e "devtools::install_github('https://github.com/inesscc/calidad')"
 RUN mkdir /root/calidadv2
 COPY R /root/calidadv2
-RUN R -e "devtools::install_github('https://github.com/ricardoflopiza/shiny_calidad_package')"
+#RUN R -e "devtools::install_github('https://github.com/ricardoflopiza/shiny_calidad_package')"
 COPY Rprofile.site /usr/lib/R/etc/
 EXPOSE 8080
 ENTRYPOINT ["Rscript", "app.R"]
