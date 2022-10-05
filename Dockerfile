@@ -26,7 +26,30 @@ RUN apt-get update && apt-get install -y \
     libarmadillo-dev \
     && rm -rf /var/lib/apt/lists/*
 RUN R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cloud.r-project.org/')"
-RUN R -e "install.packages(c('git2r', 'devtools','shinyFeedback', 'shiny', 'haven', 'labelled', 'dplyr', 'openxlsx', 'sjmisc',  'readxl','survey','feather', 'shinyWidgets', 'rlang', 'kableExtra', 'shinycssloaders', 'readr', 'shinybusy', 'shinyalert', 'writexl', 'shinyjs', 'tibble', 'plotly', 'pkgload'), repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('devtools'),repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('shinyFeedback',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('shiny',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('haven',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('labelled',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('dplyr',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('openxlsx',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('sjmisc',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('readxl',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('survey',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('feather',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('shinyWidgets',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('rlang',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('kableExtra',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('shinycssloaders',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('readr',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('shinybusy',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('shinyalert',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('writexl',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('shinyjs',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('tibble',repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('plotly',repos='http://cran.rstudio.com/')"
+
+
 RUN mkdir -p /root/.ssh
 ADD id_rsa /root/.ssh/id_rsa
 RUN chmod 777 /root/.ssh/id_rsa
@@ -38,4 +61,4 @@ COPY R /root/calidadv2
 #RUN R -e "devtools::install_github('https://github.com/ricardoflopiza/shiny_calidad_package')"
 COPY Rprofile.site /usr/lib/R/etc/
 EXPOSE 8080
-ENTRYPOINT ["Rscript", "app.R"]
+CMD ["R","-e", "shiny::runApp('/root/calidadv2')"]
